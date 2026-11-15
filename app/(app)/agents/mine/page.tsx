@@ -16,6 +16,7 @@ import {
   agentsSecondaryBtn,
   agentsSurface,
 } from "@/app/(app)/settings/agents/agents-ui";
+// agentsMutedClass is still used in the platform-disabled early-return above.
 
 /** Decrypts a stored agent key for display; a missing or unreadable seal yields null so the row still renders. */
 function revealAgentKey(sealed: string | null): string | null {
@@ -131,27 +132,26 @@ export default async function AgentsPage() {
   });
 
   return (
-    <div className="mx-auto w-full max-w-5xl space-y-8">
+    <div className="flex flex-col gap-5 pb-10 text-zk-text">
       <OnCallInvites userId={user.id} />
-      <div className="space-y-3">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
-          <div className="min-w-0 space-y-1 sm:max-w-xl md:max-w-2xl">
-            <h1 className="text-3xl font-extrabold tracking-tight text-zk-text">My agents</h1>
-            <p className={agentsMutedClass}>
-              Your agents, wherever they work. Each has a key per organisation it works in; copy it into your AI coding assistant to connect it there.
-            </p>
-          </div>
-          <div className="flex shrink-0 items-center gap-2">
-            <Link href={PREFERENCES_HREF} className={agentsSecondaryBtn}>
-              Preferences
-            </Link>
-            <Link href={CREATE_AGENT_HREF} className={agentsPrimaryBtn}>
-              Create agent
-            </Link>
-          </div>
+      <header className="flex flex-wrap items-end justify-between gap-4">
+        <div className="min-w-0 flex-[1_1_280px] space-y-1">
+          <h1 className="m-0 text-2xl font-extrabold">My agents</h1>
+          <p className="m-0 text-sm text-zk-text2">
+            Your agents, wherever they work. Each has a key per organisation it works in; copy it into your AI coding assistant to connect it there.
+          </p>
         </div>
-      </div>
+        <div className="flex shrink-0 items-center gap-2">
+          <Link href={PREFERENCES_HREF} className={agentsSecondaryBtn}>
+            Preferences
+          </Link>
+          <Link href={CREATE_AGENT_HREF} className={agentsPrimaryBtn}>
+            Create agent
+          </Link>
+        </div>
+      </header>
 
+      <div className="space-y-6">
       {!organisationId ? (
         <div className={`${agentsSurface} border-dashed p-6 text-sm text-zk-text2`}>
           <p>
@@ -220,6 +220,7 @@ export default async function AgentsPage() {
           )}
         </section>
       )}
+      </div>
     </div>
   );
 }

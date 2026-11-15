@@ -2,8 +2,10 @@ import Link from "next/link";
 import { requireUser } from "@/lib/auth-helpers";
 import { isAgentPlatformEnabled } from "@/lib/feature-flags";
 import { currentOrganisationIdFor } from "@/lib/organisation-context";
+import { MANAGE_AGENTS_HREF } from "@/lib/header-nav";
 import { loadActivity } from "@/lib/activity/queries";
 import { activityIssueNumber } from "@/lib/activity/board";
+import { agentsSecondaryBtn } from "@/app/(app)/settings/agents/agents-ui";
 import { ActivityBoard } from "./activity-board";
 
 export const metadata = { title: "Human–Agent Activity" };
@@ -46,21 +48,26 @@ export default async function ActivityPage({ searchParams }: { searchParams: Pro
             What your agents are doing, what needs you, and how much time is left.
           </p>
         </div>
-        <form method="get" className="flex flex-wrap items-end gap-2">
-          <label className="text-xs font-semibold text-zk-muted">
-            Issue
+        <Link href={MANAGE_AGENTS_HREF} className={agentsSecondaryBtn}>
+          Manage agents
+        </Link>
+      </header>
+      <div className="flex flex-wrap items-center gap-2">
+        <form method="get" className="flex flex-wrap items-center gap-2">
+          <label className="flex items-center gap-2 text-xs font-semibold text-zk-muted">
+            Filter by issue
             <input
               name="issue"
               defaultValue={issueInput}
               placeholder="#123"
               inputMode="numeric"
-              className="mt-1 block h-10 w-32 rounded-lg border border-zk-border bg-zk-bg px-3 text-sm text-zk-text"
+              className="block h-9 w-28 rounded-lg border border-zk-border bg-zk-bg px-3 text-sm font-normal text-zk-text"
             />
           </label>
-          <button type="submit" className="h-10 rounded-full bg-electric-blue-strong px-4 text-sm font-semibold text-white">Filter</button>
-          {issueInput ? <Link className={`${link} self-center text-sm`} href="/activity">Clear</Link> : null}
+          <button type="submit" className="h-9 rounded-full bg-electric-blue-strong px-4 text-sm font-semibold text-white">Filter</button>
+          {issueInput ? <Link className={`${link} text-sm`} href="/activity">Clear</Link> : null}
         </form>
-      </header>
+      </div>
       <ActivityBoard data={data} renderedAt={data.loadedAt} />
     </div>
   );

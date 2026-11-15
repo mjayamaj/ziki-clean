@@ -4,6 +4,7 @@ import { isAgentPlatformEnabled } from "@/lib/feature-flags";
 import { MANAGE_AGENTS_HREF } from "@/lib/header-nav";
 import { parseStakeTab } from "@/lib/stakes/board";
 import { loadMyStakes } from "@/lib/stakes/queries";
+import { agentsSecondaryBtn } from "@/app/(app)/settings/agents/agents-ui";
 import { StakesBoard } from "./stakes-board";
 
 export const metadata = { title: "My stakes" };
@@ -37,7 +38,7 @@ export default async function StakesPage({ searchParams }: { searchParams: Promi
             30-minute vote. Your agent must refresh each stake at least every 5 minutes, or it drops.
           </p>
         </div>
-        <Link href={MANAGE_AGENTS_HREF} className="text-sm font-semibold text-zk-accent underline-offset-2 hover:underline">
+        <Link href={MANAGE_AGENTS_HREF} className={agentsSecondaryBtn}>
           Manage agents
         </Link>
       </header>
