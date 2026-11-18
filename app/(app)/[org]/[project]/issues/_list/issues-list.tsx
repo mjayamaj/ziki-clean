@@ -1138,7 +1138,7 @@ export async function IssuesList({
           <IssueFilters compact tagTypes={tagTypes} milestones={milestones} areas={areas} shortcutsEnabled={shortcutsEnabled}
             stageCounts={isDeletedView ? undefined : { confirming: confirmingCount, ready: readyCount }} />
         </Suspense>}
-        <div className="issues-actions flex flex-wrap items-center gap-2 print:hidden">
+        <div className="issues-actions flex flex-wrap items-center gap-3 print:hidden">
           {/* The issue tabs' filter, beside the search: a standard Filter button and menu. */}
           {!isIdeasView && !isYourWorkView && filterGroups.length > 0 ? <ToolbarFilterMenu groups={filterGroups} summary={filterSummary} /> : null}
           {finishedWatched > 0 ? <UnwatchFinishedButton count={finishedWatched} /> : null}
@@ -1165,7 +1165,7 @@ export async function IssuesList({
   }
 
   const listContent = (
-    <div className="space-y-4">
+    <div className="space-y-5">
         {statusParam === "resolved" && !isDeletedView ? <LiveRefresh /> : null}
 
         {/* #project-links: the site/code panel renders here (from ProjectLinks in the top right) while it is open. */}
@@ -1377,7 +1377,7 @@ export async function IssuesList({
                         }`}
                         details={liveFix ? <LiveRowDetails check={liveFix} confirmations={liveConfirmations.get(bug.id) ?? []} /> : null}
                       >
-                        <div className="issues-vote w-[76px] shrink-0">
+                        <div className="issues-vote w-[76px] shrink-0 opacity-70">
                           <RewardBadge reward={Number(bug.reward)} estimates={bug.rewardEstimateCount} fixed={Boolean(bug.rewardFixedAt)} />
                         </div>
                         {isMyWorkTab ? (
@@ -1465,10 +1465,10 @@ export async function IssuesList({
                           })()
                         ) : (
                           <>
-                        <span className="issues-status-cell justify-center">
+                        <span className="issues-status-cell justify-center opacity-70">
                           <BidsVoteBadge count={bug._count.bids} />
                         </span>
-                        <div className="issues-vote issues-vote-end shrink-0">{importance}</div>
+                        <div className="issues-vote issues-vote-end shrink-0 opacity-70">{importance}</div>
                         <span
                           className={`w-10 shrink-0 items-center justify-end gap-2 ${
                             isWatchingView && !bug.isDeleted ? "flex" : "hidden lg:flex"
