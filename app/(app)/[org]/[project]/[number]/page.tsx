@@ -2051,16 +2051,16 @@ export default async function BugDetailPage({ params, searchParams }: BugPagePro
       ) : null}
 
       {/* Header: number + title, status language, importance */}
-      <div className="flex flex-col gap-3.5">
+      <div className="flex flex-col gap-4">
         <div className="flex flex-wrap items-start justify-between gap-4">
-          <div className="min-w-0 flex-[1_1_600px] space-y-3">
+          <div className="min-w-0 flex-[1_1_600px] space-y-2">
             <div className="flex items-start gap-2">
               {/* Back to the list it was opened from; otherwise the list for its status. */}
               <BackToList fallback={issuesPath(refOf(bug.project), bug.status)} label="Back to issues" />
               <h1 className="min-w-0 break-words text-[28px] font-extrabold leading-tight tracking-[-0.02em] text-zk-text">
-                <span className="font-bold tabular-nums text-zk-muted">
+                <span className="mr-1 font-mono text-base font-semibold tabular-nums text-zk-muted">
                   {formatIssueNumber(bug.number)}
-                </span>{" "}
+                </span>
                 {bug.title}
               </h1>
             </div>
@@ -2070,12 +2070,10 @@ export default async function BugDetailPage({ params, searchParams }: BugPagePro
             ) : null}
 
             {/* Taxonomy (#687). Status, stage and the opened date are in the Status box. */}
-            {bug.type ? (
-              <p className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-xs text-zk-muted">
+            <div className="mt-1 flex flex-wrap items-center gap-2">
+              {bug.type ? (
                 <span className={`${issueChipBaseClass} bg-zk-chip text-zk-text2`}>{bug.type.name}</span>
-              </p>
-            ) : null}
-            <div className="flex flex-wrap items-center gap-2">
+              ) : null}
               <IssuePrioritySelect bugId={bug.id} priority={bug.priority} />
             </div>
           </div>
@@ -2132,7 +2130,7 @@ export default async function BugDetailPage({ params, searchParams }: BugPagePro
 
       <div className="flex flex-wrap items-start gap-5">
         {/* MAIN COLUMN */}
-        <div className="flex min-w-0 flex-[999_1_600px] flex-col gap-5">
+        <div className="flex min-w-0 flex-[999_1_600px] flex-col gap-4">
           {bug.status === "open" && bug.voteCount < WORK_READINESS_VOTE_THRESHOLD ? (
             <InsufficientVotesAuditBanner
               issueId={bug.id}
@@ -2270,6 +2268,8 @@ export default async function BugDetailPage({ params, searchParams }: BugPagePro
               ) : null}
 
               {conversationHasContent ? (
+                <>
+                  <hr className="border-t border-zk-divider" />
                 <section
                   id="conversation"
                   className="scroll-mt-24 rounded-[20px] border border-zk-border bg-zk-surface p-5 sm:p-[22px]"
@@ -2348,6 +2348,7 @@ export default async function BugDetailPage({ params, searchParams }: BugPagePro
                     ) : null}
                   </IssueTimeline>
                 </section>
+                </>
               ) : null}
 
               {closeSuggestions ? <CloseSuggestionsPanel data={closeSuggestions} /> : null}
@@ -2366,7 +2367,7 @@ export default async function BugDetailPage({ params, searchParams }: BugPagePro
                 <section
                   id="comments"
                   aria-label="Comments"
-                  className="scroll-mt-24 rounded-[20px] border border-zk-border bg-zk-surface p-5 sm:p-[22px]"
+                  className="scroll-mt-24 rounded-[20px] border border-zk-divider bg-zk-surface p-5 sm:p-[22px]"
                 >
                   {steeringAgent ? (
                     <AgentSteerPanel
@@ -2434,8 +2435,10 @@ export default async function BugDetailPage({ params, searchParams }: BugPagePro
 
         {/* SIDE RAIL */}
         <aside className="flex min-w-0 flex-[1_1_340px] flex-col gap-4">
+          {/* Unified info panel: Status + People + Links in one card */}
+          <div className="flex flex-col rounded-[20px] border border-zk-border bg-zk-surface">
           {/* Status: workflow state, when it was opened, and whether it is an idea or an issue (#687). */}
-          <section aria-label="Status" className="flex flex-col gap-2.5 rounded-[20px] border border-zk-border bg-zk-surface px-4 py-3.5">
+          <section aria-label="Status" className="flex flex-col gap-2.5 px-5 py-4">
             <h2 className="text-xs font-bold uppercase tracking-[0.08em] text-zk-muted">Status</h2>
             <div className="flex flex-wrap items-center gap-1.5 text-xs font-bold">
               {bug.isDeleted ? (
@@ -2511,21 +2514,9 @@ export default async function BugDetailPage({ params, searchParams }: BugPagePro
               </form>
             ) : null}
           </section>
-          {checklist ? <MergeChecklistCard checklist={checklist} testCard={Boolean(testCard)} /> : null}
-          {/* #rewards: the reward, your estimate, and everyone's. */}
-          {rewardRow ? (
-            <IssueRewardPanel
-              bugId={bug.id}
-              reward={Number(rewardRow.reward)}
-              fixed={Boolean(rewardRow.rewardFixedAt)}
-              estimates={rewardEstimates}
-              viewerId={user.id}
-              canEstimate={!bug.isDeleted && bug.status !== "closed"}
-            />
-          ) : null}
-
+          <hr className="border-t border-zk-divider" />
           {/* People, compact: one row each, label on the left. */}
-          <section className="flex flex-col gap-2 rounded-[20px] border border-zk-border bg-zk-surface px-4 py-3.5">
+          <section className="flex flex-col gap-2 px-5 py-4">
             <span className="text-xs font-bold uppercase tracking-[0.08em] text-zk-muted">People</span>
             <div className="flex min-w-0 items-center gap-3">
               <span className="w-16 shrink-0 text-xs text-zk-muted">Reporter</span>
@@ -2572,8 +2563,9 @@ export default async function BugDetailPage({ params, searchParams }: BugPagePro
               </div>
             </div>
           </section>
-
+          <hr className="border-t border-zk-divider" />
           {/* Links, under People: the GitHub PR (the linked one too) and the idea it came from. */}
+          <div className="px-5 py-4">
           <IssueLinks
             links={proofLinks}
             linkedPullRequestUrl={bug.pullRequestUrl}
@@ -2582,6 +2574,21 @@ export default async function BugDetailPage({ params, searchParams }: BugPagePro
             bugId={bug.id}
             canEditPullRequest={canEditPullRequest}
           />
+          </div>
+          </div>{/* end unified info panel */}
+
+          {checklist ? <MergeChecklistCard checklist={checklist} testCard={Boolean(testCard)} /> : null}
+          {/* #rewards: the reward, your estimate, and everyone's. */}
+          {rewardRow ? (
+            <IssueRewardPanel
+              bugId={bug.id}
+              reward={Number(rewardRow.reward)}
+              fixed={Boolean(rewardRow.rewardFixedAt)}
+              estimates={rewardEstimates}
+              viewerId={user.id}
+              canEstimate={!bug.isDeleted && bug.status !== "closed"}
+            />
+          ) : null}
 
           {prChecks && bug.pullRequestUrl && (prChecks.failed || prChecks.report?.reportedBy) ? (
             <PullRequestChecks
