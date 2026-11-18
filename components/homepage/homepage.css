@@ -83,9 +83,9 @@
 .ziki-homepage .activity-avatar.blue { background: #e6f0f8; color: #3f7197; }
 .ziki-homepage .activity-avatar.violet { background: #ece9f8; color: #6858a4; }
 
-.ziki-homepage .section { margin: 0 auto; max-width: 1180px; padding: 130px 30px; }
-.ziki-homepage .workflow { padding-top: 112px; }
-.ziki-homepage .section-heading { margin: 0 auto 54px; max-width: 700px; text-align: center; }
+.ziki-homepage .section { margin: 0 auto; max-width: 1180px; padding: 90px 30px; }
+.ziki-homepage .workflow { padding-top: 90px; }
+.ziki-homepage .section-heading { margin: 0 auto 40px; max-width: 700px; text-align: center; }
 .ziki-homepage .section-kicker { color: var(--green); display: block; font-family: var(--font-geist-mono), ui-monospace, monospace; font-size: 12px; font-weight: 500; letter-spacing: .08em; margin-bottom: 16px; text-transform: uppercase; }
 .ziki-homepage .section-heading h2, .ziki-homepage .control-copy h2, .ziki-homepage .points-copy h2, .ziki-homepage .closing-cta h2 { font-size: clamp(37px, 4.4vw, 55px); font-weight: 500; letter-spacing: -.05em; line-height: 1.04; }
 .ziki-homepage .section-heading p { color: var(--muted); font-size: 16px; line-height: 1.6; margin: 20px auto 0; max-width: 610px; }
@@ -189,7 +189,7 @@
 .ziki-homepage .points-award small { color: #7197da; font-size: 7px; }
 .ziki-homepage .points-award b { color: #244c98; font-size: 9px; margin-top: 2px; }
 
-.ziki-homepage .closing-cta { align-items: center; display: flex; flex-direction: column; padding: 115px 25px 125px; position: relative; text-align: center; }
+.ziki-homepage .closing-cta { align-items: center; display: flex; flex-direction: column; padding: 88px 25px 96px; position: relative; text-align: center; }
 .ziki-homepage .closing-cta::before { background: radial-gradient(circle, rgba(57,120,246,.15), transparent 65%); content: ''; height: 540px; position: absolute; top: 5px; width: 680px; z-index: -1; }
 .ziki-homepage .cta-mark { align-items: center; background: white; border: 1px solid #dfe8e2; border-radius: 14px; box-shadow: 0 12px 35px rgba(20,50,35,.09); display: flex; height: 58px; justify-content: center; margin-bottom: 25px; transform: rotate(-4deg); width: 58px; }
 .ziki-homepage .cta-mark img { height: 34px; width: 41px; }
@@ -240,7 +240,7 @@
 
 @media (max-width: 720px) {
   .ziki-homepage .owner { display: none; }
-  .ziki-homepage .section { padding: 95px 20px; }
+  .ziki-homepage .section { padding: 72px 20px; }
   .ziki-homepage .section-heading h2, .ziki-homepage .control-copy h2, .ziki-homepage .points-copy h2, .ziki-homepage .closing-cta h2 { letter-spacing: -.045em; }
   .ziki-homepage .workflow-grid { grid-template-columns: 1fr; }
   .ziki-homepage .control-section { border-radius: 20px; grid-template-columns: 1fr; margin-left: 12px; margin-right: 12px; padding: 64px 24px; }
@@ -526,13 +526,13 @@
 
 /* Home page FAQ (after koyaacademy.com): two columns of questions on hairline rows, each with a small plus that
    turns into a cross when it opens. No boxes. */
-.ziki-homepage .home-faq { padding-bottom: 48px; padding-top: 80px; }
-.ziki-homepage .home-faq .section-heading { margin-bottom: 40px; }
+.ziki-homepage .home-faq { padding-bottom: 36px; padding-top: 64px; }
+.ziki-homepage .home-faq .section-heading { margin-bottom: 32px; }
 .ziki-homepage .home-faq-list { align-items: start; column-gap: 48px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0 auto; max-width: 1040px; }
 .ziki-homepage .home-faq-col { display: flex; flex-direction: column; }
 .ziki-homepage .home-faq-item { border-top: 1px solid var(--line); }
 .ziki-homepage .home-faq-item:last-child { border-bottom: 1px solid var(--line); }
-.ziki-homepage .home-faq-item summary { align-items: center; cursor: pointer; display: flex; font-size: 16px; font-weight: 500; gap: 16px; justify-content: space-between; letter-spacing: -.01em; list-style: none; padding: 20px 0; transition: color .2s ease; }
+.ziki-homepage .home-faq-item summary { align-items: center; cursor: pointer; display: flex; font-size: 16px; font-weight: 500; gap: 16px; justify-content: space-between; letter-spacing: -.01em; list-style: none; padding: 15px 0; transition: color .2s ease; }
 .ziki-homepage .home-faq-item summary:hover { color: var(--green); }
 .ziki-homepage .home-faq-item summary::-webkit-details-marker { display: none; }
 .ziki-homepage .home-faq-item summary:focus-visible { border-radius: 6px; outline: 3px solid #3978f6; outline-offset: 2px; }
@@ -561,12 +561,12 @@
   .ziki-homepage .earn-word, .ziki-homepage .earn-reveal { animation: none; }
 }
 
-.ziki-homepage .path-card { display: flex; flex-direction: column; padding: 26px 24px 24px; }
-.ziki-homepage .path-card .lifecycle-icon { margin: 0 0 18px; }
+.ziki-homepage .path-card { display: flex; flex-direction: column; padding: 20px 20px 18px; }
+.ziki-homepage .path-card .lifecycle-icon { margin: 0 0 14px; }
 .ziki-homepage .path-kicker { color: var(--green); font-family: var(--font-geist-mono), ui-monospace, monospace; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
-.ziki-homepage .path-card h3 { font-size: 20px; margin: 10px 0 10px; }
-.ziki-homepage .path-card p { color: var(--muted); font-size: 14px; line-height: 1.6; margin: 0; }
-.ziki-homepage .path-cta { align-items: center; display: inline-flex; font-size: 14px; font-weight: 700; gap: 6px; margin-top: auto; padding-top: 22px; }
+.ziki-homepage .path-card h3 { font-size: 20px; margin: 8px 0 8px; }
+.ziki-homepage .path-card p { color: var(--muted); font-size: 13.5px; line-height: 1.6; margin: 0; }
+.ziki-homepage .path-cta { align-items: center; display: inline-flex; font-size: 14px; font-weight: 700; gap: 6px; margin-top: auto; padding-top: 16px; }
 .ziki-homepage .path-card:hover .path-cta { color: var(--green); }
 
 /* How it works: status track */
